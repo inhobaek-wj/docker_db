@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  mariadb:
+    image: mariadb:10.6.7
+    environment:
+      MYSQL_ROOT_PASSWORD: test1234
+      MYSQL_DATABASE: book
+      MYSQL_USER: tester
+      MYSQL_PASSWORD: test1234
+      TZ: "Asia/Seoul"
+    command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/utf8.cnf:/etc/mysql/conf.d/utf8.cnf
+      - ./db/acceptance_test_data.sql:/docker-entrypoint-initdb.d/init_1.sql
