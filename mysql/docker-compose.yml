@@ -14,3 +14,4 @@ services:
     volumes:
       - ./db/utf8.cnf:/etc/mysql/conf.d/utf8.cnf
       - ./db/acceptance_test_data.sql:/docker-entrypoint-initdb.d/init_1.sql
+      - ./data:/var/lib/mysql
