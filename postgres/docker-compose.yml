@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_PASSWORD: test1234
+      POSTGRES_DB: book
+      TZ: "Asia/Seoul"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d
