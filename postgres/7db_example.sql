@@ -114,3 +114,10 @@ EXPLAIN
 SELECT *
 FROM movies
 WHERE to_tsvector('english',title) @@ 'night & day';
+
+SELECT name, dmetaphone(name), dmetaphone_alt(name), metaphone(name, 8), soundex(name)
+FROM actors;
+
+SELECT title
+FROM movies NATURAL JOIN movies_actors NATURAL JOIN actors 
+WHERE metaphone(name, 6) = metaphone('Broos Wils', 6);
