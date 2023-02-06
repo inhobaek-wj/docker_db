@@ -76,3 +76,6 @@ SELECT * FROM crosstab(
 
 
 SELECT COUNT(*) FROM movies WHERE title !~* '^the.*';
+
+SELECT movie_id, title FROM movies
+WHERE levenshtein(lower(title), lower('a hard day nght')) <= 3;
