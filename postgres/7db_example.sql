@@ -87,3 +87,30 @@ CREATE INDEX movies_title_trigram ON movies USING gist (title gist_trgm_ops);
 SELECT *
 FROM movies
 WHERE title % 'Avatre';
+
+SELECT title
+FROM movies
+WHERE title @@ 'night & day';
+SELECT title
+FROM movies
+WHERE to_tsvector(title) @@ to_tsquery('english', 'night & day');
+
+SELECT to_tsvector('A Hard Day''s Night'), to_tsquery('english', 'night & day');
+
+SELECT to_tsvector('english', 'A Hard Day''s Night');
+SELECT to_tsvector('simple', 'A Hard Day''s Night');
+
+SELECT ts_lexize('english_stem', 'Day''s');
+SELECT to_tsvector('german', 'was machst du gerade?');
+
+CREATE INDEX movies_title_searchable ON movies USING gin(to_tsvector('english', title));
+
+EXPLAIN
+SELECT *
+FROM movies
+WHERE title @@ 'night & day';
+
+EXPLAIN
+SELECT *
+FROM movies
+WHERE to_tsvector('english',title) @@ 'night & day';
