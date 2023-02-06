@@ -73,3 +73,6 @@ SELECT * FROM crosstab(
   week int,
   sun int, mon int, tue int, wed int, thu int, fri int, sat int
 ) ORDER BY week;
+
+
+SELECT COUNT(*) FROM movies WHERE title !~* '^the.*';
