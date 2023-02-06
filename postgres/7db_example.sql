@@ -79,3 +79,11 @@ SELECT COUNT(*) FROM movies WHERE title !~* '^the.*';
 
 SELECT movie_id, title FROM movies
 WHERE levenshtein(lower(title), lower('a hard day nght')) <= 3;
+
+SELECT show_trgm('Avatar');
+
+CREATE INDEX movies_title_trigram ON movies USING gist (title gist_trgm_ops);
+
+SELECT *
+FROM movies
+WHERE title % 'Avatre';
