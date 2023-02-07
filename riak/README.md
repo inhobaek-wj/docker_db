@@ -32,3 +32,29 @@ A distributed key-value database
   ```
 
   it will give you location like this `/riak/animals/YKhSkvEtwhvqX7CzsFYo2sU0RKN`
+
+
+- insert or update
+  ```
+  curl -v -X PUT http://localhost:8098/riak/animals/ace \
+    -H "Content-Type: application/json" \
+    -d '{"nickname" : "The Wonder Dog", "breed" : "German Shepherd"}'
+
+  curl -v -X PUT http://localhost:8098/riak/animals/polly?returnbody=true \
+    -H "Content-Type: application/json" \
+    -d '{"nickname" : "Sweet Polly Purebred", "breed" : "Purebred"}'
+
+  curl -X PUT http://localhost:8098/riak/cages/1 \
+    -H "Content-Type: application/json" \
+    -H "Link: </riak/animals/polly>; riaktag=\"contains\"" \
+    -d '{"room" : 101}'
+
+  curl -X PUT http://localhost:8098/riak/cages/2 \
+    -H "Content-Type: application/json" \
+    -H "Link:</riak/animals/ace>;riaktag=\"contains\",
+      </riak/cages/1>;riaktag=\"next_to\"" \
+    -d '{"room" : 101}'
+  ```
+
+  then you can check http://localhost:8098/riak/animals/ace
+
