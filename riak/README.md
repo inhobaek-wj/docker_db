@@ -58,3 +58,21 @@ A distributed key-value database
 
   then you can check http://localhost:8098/riak/animals/ace
 
+
+- select
+
+  ```
+  curl -X GET http://localhost:8098/riak?buckets=true
+
+  curl http://localhost:8098/riak/animals?keys=true
+
+  curl http://localhost:8098/riak/cages/1/_,_,_
+
+  curl http://localhost:8098/riak/cages/2/animals,_,_
+
+  curl http://localhost:8098/riak/cages/2/_,next_to,_
+
+  curl http://localhost:8098/riak/cages/2/_,next_to,0/animals,_,_
+
+  curl http://localhost:8098/riak/cages/2/_,next_to,1/_,_,_
+  ```
