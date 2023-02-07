@@ -4,6 +4,7 @@ A distributed key-value database
 
 ### Composition
 - 1 coordinator, 1 member as default
+- riak explorer (http://localhost:8098/admin/.)
 
 #### Manual clustering on the same network
 1. add node
