@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  another-member:
+    image: basho/riak-kv
+    ports:
+      - "8088:8087"
+      - "8099:8098"
+    environment:
+      - CLUSTER_NAME=riakkv
+    volumes:
+      - ./data/member_2:/var/lib/riak
