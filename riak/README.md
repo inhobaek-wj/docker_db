@@ -45,7 +45,21 @@ A distributed key-value database
   curl -v -X PUT http://localhost:8098/riak/animals/polly?returnbody=true \
     -H "Content-Type: application/json" \
     -d '{"nickname" : "Sweet Polly Purebred", "breed" : "Purebred"}'
+  ```
 
+  then you can check http://localhost:8098/riak/animals/ace
+
+
+- select
+
+  ```
+  curl -X GET http://localhost:8098/riak?buckets=true
+
+  curl http://localhost:8098/riak/animals?keys=true
+  ```
+
+- insert with link
+  ```
   curl -X PUT http://localhost:8098/riak/cages/1 \
     -H "Content-Type: application/json" \
     -H "Link: </riak/animals/polly>; riaktag=\"contains\"" \
@@ -58,16 +72,8 @@ A distributed key-value database
     -d '{"room" : 101}'
   ```
 
-  then you can check http://localhost:8098/riak/animals/ace
-
-
-- select
-
+- link walking
   ```
-  curl -X GET http://localhost:8098/riak?buckets=true
-
-  curl http://localhost:8098/riak/animals?keys=true
-
   curl http://localhost:8098/riak/cages/1/_,_,_
 
   curl http://localhost:8098/riak/cages/2/animals,_,_
