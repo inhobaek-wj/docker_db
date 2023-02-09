@@ -69,7 +69,7 @@ A distributed key-value database
     -H "Content-Type: application/json" \
     -H "Link:</riak/animals/ace>;riaktag=\"contains\",
       </riak/cages/1>;riaktag=\"next_to\"" \
-    -d '{"room" : 101}'
+    -d '{"room" : 102}'
   ```
 
 - link walking
@@ -83,4 +83,15 @@ A distributed key-value database
   curl http://localhost:8098/riak/cages/2/_,next_to,0/animals,_,_
 
   curl http://localhost:8098/riak/cages/2/_,next_to,1/_,_,_
+  ```
+
+- arbitrary metadata
+  ```
+  curl -X PUT http://localhost:8098/riak/cages/1 \
+    -H "Content-Type: application/json" \
+    -H "X-Riak-Meta-Color: Pink" \
+    -H "Link: </riak/animals/polly>; riaktag=\"contains\"" \
+    -d '{"room" : 101}'
+
+  curl -i http://localhost:8098/riak/cages/1
   ```
