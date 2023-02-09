@@ -95,3 +95,11 @@ A distributed key-value database
 
   curl -i http://localhost:8098/riak/cages/1
   ```
+
+- image file
+  ```
+  curl -X PUT http://localhost:8098/riak/photos/polly.jpg \
+    -H "Content-type: image/jpeg" \
+    -H "Link: </riak/animals/polly>; riaktag=\"photo\"" \
+    --data-binary @images/polly.jpg
+  ```
