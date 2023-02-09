@@ -24,6 +24,8 @@ A distributed key-value database
 
 3. example
 
+- url format: `http://address:port/riak/[bucket]/[key]`
+
 - insert
   ```
   curl -i -X POST http://localhost:8098/riak/animals \
