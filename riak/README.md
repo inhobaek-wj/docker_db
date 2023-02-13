@@ -204,3 +204,27 @@ A distributed key-value database
     ]
   }'
   ```
+
+- filter
+  ```
+  curl -X POST http://localhost:8098/mapred \
+    -H "content-type:application/json" \
+    --data-raw '
+  {
+    "inputs":{
+      "bucket":"cages",
+      "key_filters":[["eq", "2"]]
+    }, "query":[
+      {"link":{
+        "bucket":"animals",
+        "keep":false
+        }
+      }, {"map":{
+        "language":"javascript",
+        "source":
+          "function(v) { return [v]; }"
+        }
+      }
+    ]
+  }'
+  ```
