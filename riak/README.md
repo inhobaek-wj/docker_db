@@ -135,3 +135,16 @@ A distributed key-value database
     ]
   }'
   ```
+
+- register function
+  ```
+  curl -X PUT http://localhost:8098/riak/my_functions/map_capacity \
+    -H "Content-type: application/json; charset=utf-8" \
+    --data-raw '
+    function(v) {
+      var parsed_data = JSON.parse(v.values[0].data);
+      var data = {};
+      data[parsed_data.style] = parsed_data.capacity;
+      return [data];
+    }'
+  ```
