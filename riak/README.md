@@ -148,3 +148,24 @@ A distributed key-value database
       return [data];
     }'
   ```
+
+- map with registered function
+  ```
+  curl -X POST http://localhost:8098/mapred \
+    -H "content-type:application/json" \
+    --data-raw '
+  {
+    "inputs":[
+      ["rooms","101"],["rooms","102"],["rooms","103"]
+    ],
+    "query":[
+      {
+        "map":{
+          "language":"javascript",
+          "bucket":"my_functions",
+          "key":"map_capacity"
+        }
+      }
+    ]
+  }'
+  ```
