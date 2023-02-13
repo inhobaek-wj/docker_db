@@ -1,4 +1,5 @@
-docker compose files for various db
+docker compose files for various databases
 
-- mysql/mariadb
-- postgres
+- mysql/mariadb (rdb)
+- postgres (rdb)
+- riak (key-value db)
