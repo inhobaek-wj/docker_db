@@ -169,3 +169,38 @@ A distributed key-value database
     ]
   }'
   ```
+
+- reduce
+  ```
+  curl -X POST http://localhost:8098/mapred \
+    -H "content-type:application/json" \
+    --data-raw '
+  {
+    "inputs":"rooms",
+    "query":[
+      {
+        "map":{
+          "language":"javascript",
+          "bucket":"my_functions",
+          "key":"map_capacity"
+        }
+      },
+      {
+        "reduce":{
+          "language":"javascript",
+          "source":
+            "function(v) {
+              var totals = {};
+              for (var i in v) {
+                for(var style in v[i]) {
+                  if( totals[style] ) totals[style] += v[i][style];
+                  else                totals[style] = v[i][style];
+                }
+              }
+              return [totals];
+            }"
+        }
+      }
+    ]
+  }'
+  ```
