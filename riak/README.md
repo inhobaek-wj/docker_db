@@ -6,6 +6,12 @@ A distributed key-value database
 - 1 coordinator, 1 member as default
 - riak explorer (http://localhost:8098/admin/.)
 
+### Test data
+  ```
+  gem install riak-client json
+  ruby hotel.rb
+  ```
+
 #### Manual clustering on the same network
 1. add node
 
