@@ -109,3 +109,29 @@ A distributed key-value database
     -H "Link: </riak/animals/polly>; riaktag=\"photo\"" \
     --data-binary @images/polly.jpg
   ```
+
+- mapreduce
+  ```
+  curl -X POST http://localhost:8098/mapred \
+    -H "Content-type: application/json; charset=utf-8" \
+    --data-raw '
+  {
+    "inputs":[
+      ["rooms","101"],["rooms","102"],["rooms","103"]
+    ],
+    "query":[
+      {
+        "map": {
+          "language":"javascript",
+          "source":
+            "function(v) {
+              var parsed_data = JSON.parse(v.values[0].data);
+              var data = {};
+              data[parsed_data.style] = parsed_data.capacity;
+              return [data];
+           }"
+        }
+      }
+    ]
+  }'
+  ```
