@@ -110,7 +110,7 @@ A distributed key-value database
     --data-binary @images/polly.jpg
   ```
 
-- mapreduce
+- map
   ```
   curl -X POST http://localhost:8098/mapred \
     -H "Content-type: application/json; charset=utf-8" \
