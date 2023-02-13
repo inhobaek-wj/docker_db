@@ -228,3 +228,23 @@ A distributed key-value database
     ]
   }'
   ```
+
+- built-in function
+  ```
+  curl -X POST http://localhost:8098/mapred \
+    -H "content-type:application/json" \
+    --data-raw '
+  {
+    "inputs":[
+      ["rooms","101"],["rooms","102"],["rooms","103"]
+    ],
+    "query":[
+      {
+        "map":{
+          "language":"javascript",
+          "name":"Riak.mapValuesJson"
+        }
+      }
+    ]
+  }'
+  ```
